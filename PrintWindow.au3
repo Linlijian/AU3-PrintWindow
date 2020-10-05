@@ -1,26 +1,14 @@
 #include-once
 #include <ScreenCapture.au3>
 
-
-Local $WinHandle = WinGetHandle("NoxPlayer")
-$iWidth = _WinAPI_GetWindowWidth($WinHandle)
-$iHeight = _WinAPI_GetWindowHeight($WinHandle)
-
-;Example 1
-_WinCapture($WinHandle ,$iWidth ,$iHeight)
-
-;Example 2
-_WinCaptureArea($WinHandle,$iWidth,$iHeight,700,50)
-
-;Example 3
-Local $val1 = 0 ;จุดเริ่มตำแหน่งภาพ แกน X 
-Local $val2 = 0 ;จุดเริ่มตำแหน่งภาพ แกน Y
-Local $val3 = 100 ;ขนาดภาพที่ cap แกน X
-Local $val4 = 100 ;ขนาดภาพที่ cap แกน Y
-Local $val5 = 560 ;ตำแหน่งแกน X ภาพที่ cap จากขนาดของ windown
-Local $val6 = 300 ;ตำแหน่งแกน Y ภาพที่ cap จากขนาดของ windown
-Local $arry[4] = [560,300,100,100]
-_WinCaptureAreaPosition($WinHandle,$arry[0],$arry[1],$arry[2],$arry[3])
+;~ Local $val1 = 0 ;จุดเริ่มตำแหน่งภาพ แกน X 
+;~ Local $val2 = 0 ;จุดเริ่มตำแหน่งภาพ แกน Y
+;~ Local $val3 = 100 ;ขนาดภาพที่ cap แกน X
+;~ Local $val4 = 100 ;ขนาดภาพที่ cap แกน Y
+;~ Local $val5 = 560 ;ตำแหน่งแกน X ภาพที่ cap จากขนาดของ windown
+;~ Local $val6 = 300 ;ตำแหน่งแกน Y ภาพที่ cap จากขนาดของ windown
+;~ Local $arry[4] = [560,300,100,100]
+;~ _WinCaptureAreaPosition($WinHandle,$arry[0],$arry[1],$arry[2],$arry[3])
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _WinCapture
@@ -48,10 +36,7 @@ Func _WinCapture($hWnd, $iWidth = -1, $iHeight = -1)
 
     _WinAPI_ReleaseDC($hWnd, $hDDC)
     _WinAPI_DeleteDC($hCDC)
-
-    _ScreenCapture_SaveImage(@ScriptDir&"\window.jpg", $hBMP)
-    _WinAPI_DeleteObject($hBMP)
-
+    
     Return $hBMP
 EndFunc   ;==>_WinCapture
 
@@ -91,9 +76,6 @@ Func _WinCaptureArea($hWnd, $iWidth = -1, $iHeight = -1, $iLeft = -1, $iTop = -1
     _WinAPI_ReleaseDC($hWnd, $hDDC)
     _WinAPI_DeleteDC($hCDC)
 
-    _ScreenCapture_SaveImage(@ScriptDir&"\windowArea.jpg", $hBMP)
-    _WinAPI_DeleteObject($hBMP)
-
     Return $hBMP
 EndFunc   ;==>_WinCaptureArea
 
@@ -102,8 +84,8 @@ EndFunc   ;==>_WinCaptureArea
 ; Description ...: Windown Capture Position hidden active dont work for minimize.
 ; Syntax ........: _WinCaptureAreaPosition($WinHandle [,$winX = -1 [,$winY = -1 [,$imgX = -1 [, $imgY = -1]]]]])
 ; Parameters ....: $WinHandle        -  The WinHandle to matching picture.
-;				   $winX             -  Window Width
-;                  $winY             -  Window Height
+;				   $winX             -  Start point for Window Width
+;                  $winY             -  Start point for Window Height
 ;                  $imgX             -  Image cap size X
 ;                  $imgY             -  Image cap size Y
 ; Author ........: Linlijian
@@ -130,8 +112,8 @@ Func _WinCaptureAreaPosition($hWnd, $winX = -1, $winY = -1, $imgX = -1, $imgY = 
     _WinAPI_ReleaseDC($hWnd, $hDDC)
     _WinAPI_DeleteDC($hCDC)
 
-    _ScreenCapture_SaveImage(@ScriptDir&"\winCaptureAreaPosition.jpg", $hBMP)
-    _WinAPI_DeleteObject($hBMP)
+    ;~ _ScreenCapture_SaveImage(@ScriptDir&"\winCaptureAreaPosition.jpg", $hBMP)
+    ;~ _WinAPI_DeleteObject($hBMP)
 
     Return $hBMP
 EndFunc   ;==>_WinCaptureAreaPosition
